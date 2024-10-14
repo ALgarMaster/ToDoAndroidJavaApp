@@ -8,123 +8,41 @@
     tools:context=".MainActivity"
     >
 
-    <GridLayout
-        android:id="@+id/headerGridLayout"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-
-        android:layout_marginTop="40dp"
-        >
-
-        <TextView
-            android:id="@+id/headerTextView"
-            android:text="Список дел"
-            android:textSize="28dp"
-
-            android:layout_row="2"
-            android:layout_marginLeft="20dp"
-
-            android:layout_column="0"
-
-
-            />
-
-        <Spinner
-            android:id="@+id/filterSpiner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-
-
-            android:layout_column="2"
-             />
-
-    </GridLayout>
-    <ScrollView
-        android:id="@+id/noCompletedScrolView"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchViewHome"
+        android:layout_margin="16dp"
+        android:background="@color/grey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/headerGridLayout">
+        android:layout_alignParentTop="true"
+        app:queryHint="Enter text notes"
+        app:iconifiedByDefault="false"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <androidx.recyclerview.widget.RecyclerView
 
-            <GridLayout
-                android:id="@+id/noCompletedGrid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/headerGridLayout"
-
-                android:layout_marginTop="40dp">
-
-                <TextView
-                    android:id="@+id/noCompletedTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:text="Не завершено"
-                    android:textSize="16dp"
-                    />
-
-                <ListView
-                    android:id="@+id/noCompletedListView"
-                    android:layout_row="1"
-                    android:layout_column="0"
-
-                    >
-
-
-
-                </ListView>
-
-
-            </GridLayout>
-
-        </LinearLayout>
-
-
-
-
-
-
-
-
-
-    </ScrollView>
-
-    <GridLayout
-        android:id="@+id/completedGrid"
+        android:id="@+id/recycler_home"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_below="@id/searchViewHome">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fadAdd"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/noCompletedScrolView"
 
-        android:layout_marginTop="40dp">
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
 
-        <TextView
-            android:id="@+id/completedTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:text="Завершено"
-            android:textSize="16dp"
-            />
-
-        <Spinner
-            android:id="@+id/completedSpinner"
-            android:layout_width="match_parent"
-            android:layout_row="1"
-            android:layout_column="0"
-
-
-            />
-
-
-    </GridLayout>
-
-
+        android:layout_margin="26dp"
+        android:src="@drawable/ic_plus_icon"
+        />
 
 
 
