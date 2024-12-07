@@ -1,21 +1,28 @@
 /* styles/style.css */
+
+/* Общие стили для всего сайта */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background-color: #e0f7fa;  /* Светлый голубой фон */
     margin: 0;
     padding: 0;
+    color: #333;  /* Темный текст */
 }
 
+/* Стили для шапки (header) */
 header {
-    background-color: #4CAF50;
+    background-color: #00796b;  /* Тёмно-зеленый цвет */
     color: white;
     text-align: center;
-    padding: 10px 0;
+    padding: 20px;
 }
 
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
 
-
-
+/* Стили для навигации */
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -23,24 +30,84 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
 }
 
+nav ul li a:hover {
+    color: #ffcc80;  /* Оранжевый цвет при наведении */
+}
+
+/* Стили для основного контента (main) */
 main {
-    padding: 20px;
+    padding: 40px 20px;
+    text-align: center;
 }
 
+main h2 {
+    color: #00796b;
+    font-size: 2em;
+}
+
+main p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+/* Стили для секции с изображениями */
+section img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 8px;  /* Скругленные углы для изображений */
+    transition: transform 0.3s ease;
+}
+
+section img:hover {
+    transform: scale(1.05);  /* Увеличение изображения при наведении */
+}
+
+/* Стили для футера */
 footer {
-    background-color: #333;
+    background-color: #004d40;  /* Тёмно-зеленый цвет */
     color: white;
     text-align: center;
     padding: 10px 0;
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1em;
+}
+
+/* Мобильные стили */
+@media screen and (max-width: 600px) {
+    header h1 {
+        font-size: 2em;  /* Уменьшаем размер заголовка для мобильных */
+    }
+
+    nav ul li {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    main h2 {
+        font-size: 1.5em;  /* Уменьшаем размер заголовков */
+    }
+
+    main p {
+        font-size: 1em;  /* Уменьшаем размер текста */
+    }
 }
