@@ -3,33 +3,54 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # срабатывает при пуше в главную ветку (можно изменить на любую вашу ветку)
+      - main  # Срабатывает при пуше в главную ветку (можно изменить на любую вашу ветку)
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
+      # Шаг 1: Проверяем код из репозитория
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # Шаг 2: Настройка JDK для сборки проекта
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
           java-version: '17'
 
+      # Шаг 3: Кеширование зависимостей Gradle для ускорения сборки
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      # Шаг 4: Собираем проект (используем gradlew, чтобы собирать проект через Gradle)
       - name: Build the project
         run: ./gradlew build
 
-      - name: Set up GitHub Pages
+      # Шаг 5: Создаем директорию для публикации на GitHub Pages
+      - name: Create directories for GitHub Pages
+        run: |
+          mkdir -p gh-pages
+          cp -r ./build/outputs/html/* gh-pages/  # Копируем статические файлы в папку gh-pages
+
+      # Шаг 6: Деплой на GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/outputs/html  # Путь до статического контента, который нужно опубликовать
+          publish_dir: ./gh-pages  # Папка с контентом для деплоя
 
-      - name: Deploy to GitHub Pages
+      # Шаг 7: Настройка git для коммита и пуша изменений
+      - name: Commit and push changes to gh-pages branch
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
           git commit -m "Deploy to GitHub Pages"
-          git push
+          git push --force  # Используем --force для перезаписи gh-pages, если нужно
